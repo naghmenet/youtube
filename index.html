@@ -3,40 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Open in YouTube</title>
+  <title>NaghmeNet – YouTube Redirect</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 20px; }
-    .modal {
-      margin-top: 100px;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
       padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      background-color: #f9f9f9;
     }
+
+    .modal {
+      margin-top: 40px;
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      display: inline-block;
+      max-width: 400px;
+    }
+
     .btn {
-      padding: 10px 20px;
+      padding: 12px 24px;
       background: #FF0000;
       color: #fff;
       border: none;
       margin-top: 20px;
       font-size: 18px;
-      border-radius: 5px;
+      font-weight: bold;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #cc0000;
+    }
+
+    img.logo {
+      width: 120px;
+      margin-top: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 10px 0;
     }
   </style>
 </head>
 <body>
+  <!-- 🔥 Replace with your own logo file if needed -->
+  <img src="logo.png" alt="NaghmeNet Logo" class="logo" />
+
   <div class="modal">
-    <h2>Open in the YouTube app?</h2>
-    <button class="btn" onclick="openYouTube()">Open YouTube</button>
+    <h2 style="margin-bottom: 5px;">🎉 Xoş gəlmisiniz! / خوش آمدید! / Welcome!</h2>
+    <p>
+      You’re just one tap away from our YouTube channel! 👇<br/>
+      Aşağıdakı düyməni sıxın ki, Youtube tətbiqində kanalımıza keçəsiniz. 📲<br/>
+      روی دکمه زیر بزنید تا در اپلیکیشن یوتیوب وارد کانال ما شوید و مشترک شوید. ❤️
+    </p>
+    <button class="btn" onclick="openYouTube()">🎬 Bəzan bərim! | Let’s go! | بزن بریم</button>
   </div>
 
   <script>
     function openYouTube() {
-      // 1) Try the native YouTube app via your handle
+      // Try deep link to YouTube app
       window.location.href = "youtube://www.youtube.com/@NaghmeNet?sub_confirmation=1";
 
-      // 2) Fallback: after 500 ms, go to the web URL (with subscribe prompt)
+      // Fallback to browser if app doesn't open
       setTimeout(() => {
         window.location.href = "https://www.youtube.com/@NaghmeNet?sub_confirmation=1";
       }, 500);
