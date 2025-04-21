@@ -5,32 +5,97 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>NaghmeNet – YouTube Redirect</title>
   <style>
-    body { margin:0; padding:0; display:flex; height:100vh;
-      background:#f9f9f9; justify-content:center; align-items:center;
-      font-family:Segoe UI, sans-serif; }
-    .modal { background:#fff; padding:20px; border-radius:12px;
-      box-shadow:0 2px 12px rgba(0,0,0,0.1); text-align:center;
-      max-width:90%; width:350px; cursor:pointer; }
-    .logo { width:100px; margin:0 auto 20px; display:block; }
-    .btn { display:block; background:#FF0000; color:#fff;
-      text-decoration:none; padding:14px; border-radius:8px;
-      font-size:18px; font-weight:bold; }
-    .note { font-size:12px; color:#666; margin-top:12px; }
-    .rtl { direction:rtl; }
+    body {
+      margin: 0; padding: 0;
+      display: flex; height: 100vh;
+      justify-content: center; align-items: center;
+      background: #f9f9f9;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .modal {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      max-width: 90%; width: 350px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .logo {
+      width: 120px;
+      display: block;
+      margin: 0 auto 20px;
+      pointer-events: none;
+    }
+    .btn {
+      display: block;
+      background: #FF0000;
+      color: #fff;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+      position: relative;
+      pointer-events: none;
+    }
+    .hand {
+      display: inline-block;
+      margin-left: 8px;
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-4px); }
+    }
+    @media (max-width:400px){
+      .logo { width: 100px; margin-bottom: 15px; }
+      .btn { font-size: 16px; padding: 12px; }
+    }
   </style>
 </head>
 <body>
-  <div class="modal">
+
+  <div class="modal" onclick="goToYouTube()">
     <img src="logo.png" alt="NaghmeNet Logo" class="logo"/>
-    <a class="btn"
-       href="intent://www.youtube.com/@NaghmeNet?sub_confirmation=1#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fwww.youtube.com%2F%40NaghmeNet%3Fsub_confirmation%3D1;end">
-      ▶️ YouTube
-    </a>
-    <div class="note">
-      <p class="rtl">اگر صفحه باز نشد، روی سه نقطه بزنید و «Open in browser» را انتخاب کنید.</p>
-      <p>Aşağı çıxmırsa, yuxarıdakı üç nöqtəyə toxun “Open in browser” seç.</p>
-      <p>If it doesn’t open, tap the 3‑dots above and choose “Open in browser”.</p>
+    <div class="btn">
+      ▶️ YouTube <span class="hand">👉</span>
     </div>
   </div>
+
+  <script>
+    function goToYouTube() {
+      const webUrl = "https://www.youtube.com/@NaghmeNet?sub_confirmation=1";
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const isAndroid = /Android/.test(navigator.userAgent);
+
+      if (isAndroid) {
+        // Android: show native intent dialog
+        window.location.href =
+          "intent://www.youtube.com/@NaghmeNet?sub_confirmation=1" +
+          "#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=" +
+          encodeURIComponent(webUrl) +
+          ";end";
+      }
+      else if (isIOS) {
+        // iOS: try app then fallback
+        window.location.href = "youtube://www.youtube.com/@NaghmeNet?sub_confirmation=1";
+        setTimeout(() => window.location.href = webUrl, 500);
+      }
+      else {
+        // Desktop/other: open web
+        window.location.href = webUrl;
+      }
+    }
+
+    // Auto-trigger after 0.5 seconds
+    window.addEventListener('load', () => {
+      setTimeout(goToYouTube, 500);
+    });
+  </script>
+
 </body>
 </html>
