@@ -8,61 +8,69 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      padding: 20px;
+      padding: 0;
+      margin: 0;
       background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
     .modal {
-      margin-top: 40px;
-      padding: 25px;
+      padding: 25px 20px;
       background: white;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      display: inline-block;
-      max-width: 400px;
+      max-width: 90%;
+      width: 350px;
+    }
+
+    .logo {
+      width: 120px;
+      display: block;
+      margin: 0 auto 30px auto;
     }
 
     .btn {
-      padding: 12px 24px;
+      padding: 14px 24px;
       background: #FF0000;
       color: #fff;
       border: none;
-      margin-top: 20px;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s ease;
+      width: 100%;
     }
 
     .btn:hover {
       background: #cc0000;
     }
 
-    img.logo {
-      width: 120px;
-      margin-top: 20px;
-    }
+    @media (max-width: 400px) {
+      .btn {
+        font-size: 18px;
+        padding: 12px;
+      }
 
-    p {
-      font-size: 16px;
-      margin: 10px 0;
+      .logo {
+        width: 100px;
+        margin-bottom: 20px;
+      }
     }
   </style>
 </head>
 <body>
-
   <div class="modal">
     <img src="logo.png" alt="NaghmeNet Logo" class="logo" />
-    <button class="btn" onclick="openYouTube()">🎬 Bəzan bərim! | Let’s go! | بزن بریم</button>
+    <button class="btn" onclick="openYouTube()">▶️ YouTube</button>
   </div>
 
   <script>
     function openYouTube() {
-      // Try deep link to YouTube app
       window.location.href = "youtube://www.youtube.com/@NaghmeNet?sub_confirmation=1";
-
-      // Fallback to browser if app doesn't open
       setTimeout(() => {
         window.location.href = "https://www.youtube.com/@NaghmeNet?sub_confirmation=1";
       }, 500);
