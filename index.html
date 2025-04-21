@@ -24,12 +24,14 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
       max-width: 90%;
       width: 350px;
+      cursor: pointer;
     }
 
     .logo {
       width: 120px;
       display: block;
       margin: 0 auto 30px auto;
+      pointer-events: none; /* So it doesn't block the modal click */
     }
 
     .btn {
@@ -43,6 +45,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
       width: 100%;
+      margin-top: 10px;
     }
 
     .btn:hover {
@@ -63,9 +66,9 @@
   </style>
 </head>
 <body>
-  <div class="modal">
+  <div class="modal" onclick="openYouTube()">
     <img src="logo.png" alt="NaghmeNet Logo" class="logo" />
-    <button class="btn" onclick="openYouTube()">▶️ YouTube</button>
+    <button class="btn">▶️ YouTube</button>
   </div>
 
   <script>
