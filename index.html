@@ -31,7 +31,7 @@
       width: 120px;
       display: block;
       margin: 0 auto 30px auto;
-      pointer-events: none; /* So it doesn't block the modal click */
+      pointer-events: none;
     }
 
     .btn {
@@ -52,6 +52,17 @@
       background: #cc0000;
     }
 
+    .note {
+      font-size: 13px;
+      color: #666;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    .rtl {
+      direction: rtl;
+    }
+
     @media (max-width: 400px) {
       .btn {
         font-size: 18px;
@@ -69,14 +80,16 @@
   <div class="modal" onclick="openYouTube()">
     <img src="logo.png" alt="NaghmeNet Logo" class="logo" />
     <button class="btn">▶️ YouTube</button>
+    <div class="note">
+      <p class="rtl">اگر صفحه باز نشد، روی سه نقطه بالا بزنید و «Open in browser» را انتخاب کنید.</p>
+      <p>Ifra açılmadısa, yuxarıdakı 3 nöqtəyə klikləyin və “Open in browser” seçin.</p>
+      <p>If it doesn't open, tap the 3-dots above and choose “Open in browser”.</p>
+    </div>
   </div>
 
   <script>
     function openYouTube() {
-      window.location.href = "youtube://www.youtube.com/@NaghmeNet?sub_confirmation=1";
-      setTimeout(() => {
-        window.location.href = "https://www.youtube.com/@NaghmeNet?sub_confirmation=1";
-      }, 500);
+      window.location.href = "https://www.youtube.com/@NaghmeNet?sub_confirmation=1";
     }
   </script>
 </body>
