@@ -68,21 +68,24 @@
 
   <script>
     function goToYouTube() {
-      const webUrl = "https://www.youtube.com/@NaghmeNet?sub_confirmation=1";
+      // const webUrl = "https://www.youtube.com/@NaghmeNet?sub_confirmation=1";
+      const webUrl = "https://www.youtube.com/playlist?list=PL5KVkqlTchYnY79RRNn53rZgmuL1v1siX";
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       const isAndroid = /Android/.test(navigator.userAgent);
 
       if (isAndroid) {
         // Android: show native intent dialog
         window.location.href =
-          "intent://www.youtube.com/@NaghmeNet?sub_confirmation=1" +
+          // "intent://www.youtube.com/@NaghmeNet?sub_confirmation=1" +
+          "intent://www.youtube.com/playlist?list=PL5KVkqlTchYnY79RRNn53rZgmuL1v1siX" +
           "#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=" +
           encodeURIComponent(webUrl) +
           ";end";
       }
       else if (isIOS) {
         // iOS: try app then fallback
-        window.location.href = "youtube://www.youtube.com/@NaghmeNet?sub_confirmation=1";
+        // window.location.href = "youtube://www.youtube.com/@NaghmeNet?sub_confirmation=1";
+        window.location.href = "youtube://www.youtube.com/playlist?list=PL5KVkqlTchYnY79RRNn53rZgmuL1v1siX";
         setTimeout(() => window.location.href = webUrl, 500);
       }
       else {
